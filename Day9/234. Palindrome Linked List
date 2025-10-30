@@ -1,0 +1,25 @@
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast= fast.next.next;
+        }
+
+        ListNode prev = null;
+        ListNode curr = slow;
+        while (curr != null){
+            ListNode ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+        }
+
+        while (prev!=null && head!=null){
+            if (prev.val!=head.val){
+                return false;
+            }
+            prev = prev.next;
+            head = head.next;
+        }
+        return true;
